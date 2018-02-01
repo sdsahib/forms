@@ -4,9 +4,12 @@
   <form #form = "ngForm" novalidate>
     <div class ="form-group">
       <label for="firstNameId">First Name:</label>
-      <input id ="firstNameId" type="text" class="form-control" required name ="firstName" ngModel>
+      <input id ="firstNameId" type="text" class="form-control" required name ="firstName" 
+            [(ngModel)] = "firstName"
+            (ngModelChange)="firstNameChanged($event)">
     </div>
-
+  
+<!-- 
     <div class ="form-group">
         <label for="lastNameId">Last Name:</label>
         <input id ="lastNameId" type="text" class="form-control" required name ="lastName" ngModel>
@@ -30,7 +33,24 @@
         </label>
     </div>
 
-    <button class="btn btn-primary" type="submit">OK</button>
+    <div class = "form-group">
+        <label>Primary Language</label>
+            <select class="form-control">
+                <option *ngFor="let lang of languages">
+                    {{lang}}
+                </option>
+            </select>
+    </div>
+
+    <div class="form-group">
+        <label>Date Hired</label>
+        <input type="date" class ="form-control">
+    </div> -->
+    <button class="btn btn-primary" type="submit" 
+        
+        >OK</button>
+
+    <h3>{{firstName}}</h3>
   </form>
 </div>
 
