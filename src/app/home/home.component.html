@@ -1,14 +1,27 @@
 
 <div class ="container">
   <h3>Employee Detail Form</h3>
-  <form #form = "ngForm" novalidate>
-    <div class ="form-group">
-      <label for="firstNameId">First Name:</label>
-      <input id ="firstNameId" type="text" class="form-control" required name ="firstName" 
+  <form #form = "ngForm" class="was-validated" novalidate="">
+
+    <div class ="form-group" >
+      <label class="control-label" 
+        [style.color] = "firstNameId.invalid && firstNameId.touched ? 'red':'green'"  
+        
+      >First Name:</label>
+      <input #firstNameId ="ngModel" type="text" class="form-control" 
+            pattern=".*"
+            required name ="firstName" 
             [(ngModel)] = "firstName"
             (ngModelChange)="firstNameChanged($event)">
+            <div *ngIf="firstNameId.invalid && firstNameId.touched" class="alert alert-danger" >
+                Field Required
+            </div>
+            <div class="alert alert-success" *ngIf="firstNameId.valid">Man u did it</div>
     </div>
-  
+
+<!-- 
+    <h3>Classes</h3>
+    <h3>{{ firstNameId.invalid }} {{firstNameId.touched}} {{firstNameId.dirty}}</h3>
  
     <div class ="form-group">
         <label for="lastNameId">Last Name:</label>
@@ -37,28 +50,34 @@
                 [(ngModel)] = "paymentType">1099
         </label>
     </div>
- 
-    <div class = "form-group">
-        <label>Primary Language</label>
+-->
+    <!-- <div class = "form-group" [class.has-danger]="hasPrimaryLanguageError">
+        <label [style.color] = "hasPrimaryLanguageError?'red':'green'">Primary Language</label>
             <select class="form-control"
                 name = "primaryLanguage"
-                [(ngModel)]= "primaryLanguage">
+                #primaryLanguage
+                [(ngModel)]= "primaryLanguage"
+                (change)="ValidatePrimaryLanguage($event)"
+                [class.has-warning] = "hasPrimaryLanguageError"
+                >
+                <option value="default">Select a Language</option>
                 <option *ngFor="let lang of languages">
                     {{lang}}
                 </option>
             </select>
     </div>
- <!--
+    <h3>{{hasPrimaryLanguageError}}</h3>
+<!--
     <div class="form-group">
         <label>Date Hired</label>
         <input type="date" class ="form-control">
-    </div> -->
+    </div>  -->
     <button class="btn btn-primary" type="submit" 
+        [disabled] ="form.invalid"
         
         >OK</button>
 
-    <h3>{{paymentType}}</h3>
-    <h3>{{primaryLanguage}}</h3>
+    
   </form>
 </div>
 
