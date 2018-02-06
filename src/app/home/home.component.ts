@@ -7,8 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   languages = ['english','hindi','french'];
-  firstName: string = "Sahib";
-  lastName: string;
+ 
+  public firstName: string = "Sahib";
+  public lastName: string = "singh";
+  public isFullTime: boolean = true;
+  public paymentType: string ;
+  public primaryLanguage: string = "English";
   constructor() { }
 
   firstNameChanged(value: string){
