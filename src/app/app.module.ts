@@ -6,7 +6,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
-import {FormsModule} from "@angular/forms";
+import { FormsModule } from "@angular/forms";
+import { FormPoster } from './services/form-poster.service';
+import { HttpModule } from '@angular/http';
 
 
 @NgModule({
@@ -18,10 +20,11 @@ import {FormsModule} from "@angular/forms";
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpModule
     
     ],
-  providers: [],
+  providers: [FormPoster],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
