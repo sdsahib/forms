@@ -14,11 +14,15 @@ export class HomeComponent implements OnInit {
  
   public hasPrimaryLanguageError: boolean =true;
 
-  languages = ['English', 'Spanish', 'Other'];
+  languages =[];
   model = new Employee('Sahib', '', false, '', 'default');
  
   constructor(private formPoster: FormPoster) { 
-
+      this.formPoster.getLanguages()
+          .subscribe(
+             data => this.languages = data.languages,
+             err => console.log('get error: ', err)
+          );
   }
 
   firstNameChanged(value: string){
